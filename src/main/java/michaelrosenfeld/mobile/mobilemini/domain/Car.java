@@ -22,12 +22,12 @@ public class Car {
 
     private String make;
     private String model;
-    private int constructionYear;
+    private String constructionYear;
     private String description;
     private int price;
     private String email;
 
-    public Car(String make, String model, int constructionYear, String description, int price, String email) {
+    public Car(String make, String model, String constructionYear, String description, int price, String email) {
         this.make = make;
         this.model = model;
         this.constructionYear = constructionYear;
