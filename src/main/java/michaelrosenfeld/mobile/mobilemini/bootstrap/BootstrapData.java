@@ -44,7 +44,7 @@ public class BootstrapData implements CommandLineRunner {
 
         Car fourthCar = new Car(
                 "McLaren",
-                "MP43",
+                "MP430",
                 "2021",
                 "Cool Car,also very much fast",
                 143000,
