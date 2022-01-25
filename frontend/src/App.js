@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import {Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    state = {
+        cars: []
+    };
+
+    async componentDidMount() {
+        const response = await fetch('/cars');
+        const body = await response.json();
+        this.setState({cars: body});
+    }
+
+    render() {
+        const {cars} = this.state;
+        return (<div className="App">
+                <header className="App-header">
+                    <div className="App-intro">
+                        <h2>Cars for Sale</h2>
+                        {cars.map(car => <div key={car.id}>
+                            {car.make}
+                            {car.model}
+                            {car.constructionYear}
+                            {car.description}
+                            {car.price}
+                            {car.email}
+                        </div>)}
+                    </div>
+                </header>
+            </div>);
+    }
 }
 
 export default App;
