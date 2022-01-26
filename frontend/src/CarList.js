@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from './AppNavbar';
+import AppNavbar from './AppNavBar';
 import { Link } from 'react-router-dom';
 
 class CarList extends Component {
@@ -87,4 +87,4 @@ class CarList extends Component {
 
 
 
-export default ClientList;
+export default CarList;

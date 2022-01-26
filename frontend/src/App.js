@@ -1,33 +1,21 @@
-import {Component} from "react";
+import React, { Component } from 'react';
+import './App.css';
+import Home from './Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import CarList from './CarList';
+import CarEdit from "./CarEdit";
 
 class App extends Component {
-    state = {
-        cars: []
-    };
-
-    async componentDidMount() {
-        const response = await fetch('/cars');
-        const body = await response.json();
-        this.setState({cars: body});
-    }
-
     render() {
-        const {cars} = this.state;
-        return (<div className="App">
-                <header className="App-header">
-                    <div className="App-intro">
-                        <h2>Cars for Sale</h2>
-                        {cars.map(car => <div key={car.id}>
-                            {car.make}
-                            {car.model}
-                            {car.constructionYear}
-                            {car.description}
-                            {car.price}
-                            {car.email}
-                        </div>)}
-                    </div>
-                </header>
-            </div>);
+        return (
+            <Router>
+                <Switch>
+                    <Route path='/' exact={true} component={Home}/>
+                    <Route path='/cars' exact={true} component={CarList}/>
+                    <Route path='/cars/:id' component={CarEdit}/>
+                </Switch>
+            </Router>
+        )
     }
 }
 
