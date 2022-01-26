@@ -74,9 +74,9 @@ class CarEdit extends Component {
                                onChange={this.handleChange} autoComplete="model"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="construction-year">Construction Year</Label>
-                        <Input type="text" name="construction-year" id="construction-year" value={item.constructionYear|| ''}
-                               onChange={this.handleChange} autoComplete="construction-year"/>
+                        <Label for="constructionYear">Construction Year</Label>
+                        <Input type="text" name="constructionYear" id="constructionYear" value={item.constructionYear|| ''}
+                               onChange={this.handleChange} autoComplete="constructionYear"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="description">Description</Label>
