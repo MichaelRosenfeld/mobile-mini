@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import java.util.Objects;
 
 @Getter
@@ -25,6 +26,8 @@ public class Car {
     private String constructionYear;
     private String description;
     private int price;
+
+    @Email
     private String email;
 
     public Car(String make, String model, String constructionYear, String description, int price, String email) {
