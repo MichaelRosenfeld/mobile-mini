@@ -1,12 +1,10 @@
 package michaelrosenfeld.mobile.mobilemini.controllers;
 
-import lombok.AllArgsConstructor;
 import michaelrosenfeld.mobile.mobilemini.domain.Car;
 import michaelrosenfeld.mobile.mobilemini.repositories.CarRepository;
 import org.hibernate.annotations.Type;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
