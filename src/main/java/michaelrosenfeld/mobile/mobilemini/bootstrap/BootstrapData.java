@@ -6,11 +6,14 @@ import michaelrosenfeld.mobile.mobilemini.repositories.CarRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Data
 @Component
 public class BootstrapData implements CommandLineRunner {
 
     private final CarRepository carRepository;
+
+    public BootstrapData(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
     @Override
     public void run(String... args) throws Exception {

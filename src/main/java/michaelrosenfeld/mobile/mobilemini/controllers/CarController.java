@@ -1,8 +1,7 @@
 package michaelrosenfeld.mobile.mobilemini.controllers;
 
-import lombok.AllArgsConstructor;
-import michaelrosenfeld.mobile.mobilemini.domain.Car;
-import michaelrosenfeld.mobile.mobilemini.repositories.CarRepository;
+import michaelrosenfeld.mobile.mobilemini.domain.dto.CarDto;
+import michaelrosenfeld.mobile.mobilemini.services.CarService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,47 +9,41 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-
-@AllArgsConstructor
 @RestController
 @RequestMapping("/cars")
 public class CarController {
 
-    private final CarRepository carRepository;
+    private final CarService carService;
+
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping
-    public List<Car> getCars() {
-        return carRepository.findAll();
+    public ResponseEntity<List<CarDto>> getCars() {
+        return ResponseEntity.ok(carService.getCars());
     }
 
     @GetMapping("/{id}")
-    public Car getCarById(@PathVariable Long id) {
-        return carRepository.findById(id).orElseThrow(RuntimeException::new);
+    public ResponseEntity<CarDto> getCarById(@PathVariable Long id) {
+        return ResponseEntity.ok(carService.getCarById(id));
     }
 
     @PostMapping
-    public ResponseEntity createCar(@RequestBody Car car) throws URISyntaxException {
-        Car savedCar = carRepository.save(car);
+    public ResponseEntity<CarDto> createCar(@RequestBody CarDto car) throws URISyntaxException {
+        CarDto savedCar = carService.createCar(car);
         return ResponseEntity.created(new URI("/cars/" + savedCar.getId())).body(savedCar);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity updateCar(@PathVariable Long id, @RequestBody Car car) {
-        Car currentCar = carRepository.findById(id).orElseThrow(RuntimeException::new);
-        currentCar.setMake(car.getMake());
-        currentCar.setModel(car.getModel());
-        currentCar.setConstructionYear(car.getConstructionYear());
-        currentCar.setDescription(car.getDescription());
-        currentCar.setPrice(car.getPrice());
-        currentCar.setEmail(car.getEmail());
-        currentCar = carRepository.save(car);
+    @PutMapping
+    public ResponseEntity<CarDto> updateCar(@RequestBody CarDto car) {
 
-        return ResponseEntity.ok(currentCar);
+        return ResponseEntity.ok(carService.updateCar(car));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCar(@PathVariable Long id) {
-        carRepository.deleteById(id);
+    public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
+        carService.deleteCar(id);
         return ResponseEntity.ok().build();
     }
 }

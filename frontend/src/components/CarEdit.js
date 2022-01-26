@@ -43,7 +43,7 @@ class CarEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
 
-        await fetch('/cars' + (item.id ? '/' + item.id : ''), {
+        await fetch('/cars', {
             method: (item.id) ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
