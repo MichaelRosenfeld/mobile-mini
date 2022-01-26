@@ -1,7 +1,6 @@
 package michaelrosenfeld.mobile.mobilemini.bootstrap;
 
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import michaelrosenfeld.mobile.mobilemini.domain.Car;
 import michaelrosenfeld.mobile.mobilemini.repositories.CarRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -44,10 +43,10 @@ public class BootstrapData implements CommandLineRunner {
 
         Car fourthCar = new Car(
                 "McLaren",
-                "MP430",
-                "2021",
+                "MP4-12C",
+                "2016",
                 "Cool Car,also very much fast",
-                143000,
+                243000,
                 "aaandanotherone@mail.com");
 
         carRepository.save(firstCar);
