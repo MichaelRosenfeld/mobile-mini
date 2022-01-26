@@ -17,7 +17,7 @@ export default class AppNavbar extends Component {
 
     render() {
         return <Navbar color="dark" dark expand="md">
-            <NavbarBrand tag={Link} to="/">MiniMobile.de</NavbarBrand>
+            <NavbarBrand tag={Link} to="/">mini-mobile.de</NavbarBrand>
         </Navbar>;
     }
 }
