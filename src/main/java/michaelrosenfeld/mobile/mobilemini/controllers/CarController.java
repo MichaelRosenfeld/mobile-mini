@@ -1,13 +1,16 @@
 package michaelrosenfeld.mobile.mobilemini.controllers;
 
 import michaelrosenfeld.mobile.mobilemini.domain.Car;
+import michaelrosenfeld.mobile.mobilemini.domain.dto.CarDto;
 import michaelrosenfeld.mobile.mobilemini.repositories.CarRepository;
+import michaelrosenfeld.mobile.mobilemini.util.CarMapper;
 import org.hibernate.annotations.Type;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cars")
@@ -20,29 +23,31 @@ public class CarController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Car>> getCars() {
-        return ResponseEntity.ok(carRepository.findAll());
+    public ResponseEntity<List<CarDto>> getCars() {
+        return ResponseEntity.ok(carRepository.findAll().stream()
+                .map(CarMapper::toDto)
+                .collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Car> getCarById(@PathVariable Long id) {
-        return ResponseEntity.ok(carRepository.findById(id).orElseThrow(RuntimeException::new));
+    public ResponseEntity<CarDto> getCarById(@PathVariable Long id) {
+        return ResponseEntity.ok(CarMapper.toDto(carRepository.findById(id).orElseThrow(RuntimeException::new)));
     }
 
     @PostMapping
-    public ResponseEntity<Car> createCar(@RequestBody Car car) throws URISyntaxException {
-        Car savedCar = carRepository.save(car);
+    public ResponseEntity<CarDto> createCar(@RequestBody CarDto car) throws URISyntaxException {
+        CarDto savedCar = CarMapper.toDto(carRepository.save(CarMapper.fromDto(car)));
         return ResponseEntity.created(new URI("/cars/" + savedCar.getId())).body(savedCar);
     }
 
     @PutMapping
-    public ResponseEntity<Car> updateCar(@RequestBody Car car) {
+    public ResponseEntity<CarDto> updateCar(@RequestBody CarDto car) {
         carRepository.findById(car.getId()).orElseThrow(RuntimeException::new);
-        return ResponseEntity.ok(carRepository.save(car));
+        return ResponseEntity.ok(CarMapper.toDto(carRepository.save(CarMapper.fromDto(car))));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Car> deleteCar(@PathVariable Long id) {
+    public ResponseEntity<CarDto> deleteCar(@PathVariable Long id) {
         carRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
