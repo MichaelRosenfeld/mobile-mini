@@ -59,9 +59,9 @@ class CarList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/cars/new">Add new Car</Button>
+                        <Button color="success" tag={Link} to="/cars/new">+ Add new Car</Button>
                     </div>
-                    <h3>Cars</h3>
+                    <h3>Cars for Sale</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>

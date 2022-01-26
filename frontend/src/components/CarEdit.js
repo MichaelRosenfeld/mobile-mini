@@ -56,7 +56,7 @@ class CarEdit extends Component {
 
     render() {
         const {item} = this.state;
-        const title = <h2>{item.id ? 'Edit Car' : 'Add Car'}</h2>;
+        const title = <h2>{item.id ? 'Edit Car' : 'Add a new Car'}</h2>;
 
         return <div>
             <AppNavbar/>
