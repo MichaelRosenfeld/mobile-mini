@@ -1,6 +1,5 @@
 package michaelrosenfeld.mobile.mobilemini.bootstrap;
 
-import lombok.Data;
 import michaelrosenfeld.mobile.mobilemini.domain.Car;
 import michaelrosenfeld.mobile.mobilemini.repositories.CarRepository;
 import org.springframework.boot.CommandLineRunner;
