@@ -32,18 +32,19 @@ public class CarController {
     @PostMapping
     public ResponseEntity<CarDto> createCar(@RequestBody CarDto car) throws URISyntaxException {
         CarDto savedCar = carService.createCar(car);
+
         return ResponseEntity.created(new URI("/cars/" + savedCar.getId())).body(savedCar);
     }
 
     @PutMapping
     public ResponseEntity<CarDto> updateCar(@RequestBody CarDto car) {
-
         return ResponseEntity.ok(carService.updateCar(car));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCar(@PathVariable Long id) {
         carService.deleteCar(id);
+
         return ResponseEntity.ok().build();
     }
 }

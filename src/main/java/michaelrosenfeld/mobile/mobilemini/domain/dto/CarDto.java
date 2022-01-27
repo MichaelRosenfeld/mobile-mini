@@ -14,6 +14,4 @@ public class CarDto {
     private String description;
     private int price;
     private String email;
-
-
 }
