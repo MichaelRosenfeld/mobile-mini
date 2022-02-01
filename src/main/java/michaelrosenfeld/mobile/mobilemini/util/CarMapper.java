@@ -7,7 +7,8 @@ public class CarMapper {
 
     public static CarDto toDto(Car car){
 
-        return new CarDto(car.getId(),
+        return new CarDto(
+                car.getId(),
                 car.getMake(),
                 car.getModel(),
                 car.getConstructionYear(),
@@ -18,7 +19,8 @@ public class CarMapper {
 
     public static Car fromDto(CarDto carDto){
 
-        return new Car(carDto.getId(),
+        return new Car(
+                carDto.getId(),
                 carDto.getMake(),
                 carDto.getModel(),
                 carDto.getConstructionYear(),
